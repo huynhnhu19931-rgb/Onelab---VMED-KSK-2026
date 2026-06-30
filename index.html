@@ -958,8 +958,7 @@ async function init() {
 
 async function fetchCounts() {
   try {
-    const sheetId = '1jpcF1ldYbMmD_G523LksVwOe6nbCWDWR1SjzYpsUDKU';
-    const url = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:csv&sheet=HCM&t=${Date.now()}`;
+    const url = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vT96HrSPGFiv6KauRUOu5uaPWeOrWYZLR_wpfl-ZeeEv3E1FD9h5-Er7c-Ro6F10ZihSuNOn_vbSbh2/pub?gid=1079268169&single=true&output=csv&t=' + Date.now();
     const r = await fetch(url);
     const text = await r.text();
     const lines = text.trim().split('\n').slice(1);
@@ -982,7 +981,6 @@ async function fetchCounts() {
 
     lines.forEach(line => {
       if (!line.trim()) return;
-      // Parse CSV properly handling quoted fields
       const cols = [];
       let cur = '', inQ = false;
       for (let i = 0; i < line.length; i++) {
@@ -992,9 +990,9 @@ async function fetchCounts() {
       }
       cols.push(cur.trim());
 
-      const sampleDay  = (cols[7] || '').substring(0, 2); // "07" or "08"
+      const sampleDay  = (cols[7] || '').substring(0, 2);
       const sampleSlot = (cols[8] || '').trim();
-      const examDate   = (cols[9] || '').substring(0, 5); // "16/07"
+      const examDate   = (cols[9] || '').substring(0, 5);
 
       const slotId = SLOT_MAP[sampleSlot];
       if (sampleDay && slotId && slotCounts[sampleDay]) {
@@ -1009,7 +1007,6 @@ async function fetchCounts() {
     state.slotCounts = slotCounts;
     state.examCounts = examCounts;
     state.totalRegistered = total;
-    console.log('Loaded:', total, 'rows', slotCounts);
   } catch(e) {
     console.log('fetchCounts error:', e);
   }
