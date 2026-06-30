@@ -96,7 +96,7 @@
 
   /* ── HERO BANNER ── */
   .hero {
-    background: linear-gradient(135deg, #0D3D20 0%, #1B6B3A 100%);
+    background: var(--gray-50);
     color: white;
     position: relative;
     overflow: hidden;
@@ -104,7 +104,7 @@
   .hero-img-wrap {
     max-width: 780px;
     margin: 0 auto;
-    padding: 20px 24px 0;
+    padding: 16px 24px 0;
   }
   .hero-img-full {
     width: 100%;
@@ -112,12 +112,18 @@
     object-fit: cover;
     object-position: center center;
     display: block;
-    border-radius: 12px;
+    border-radius: 12px 12px 0 0;
   }
   .hero-text {
     max-width: 780px;
     margin: 0 auto;
     padding: 18px 24px 24px;
+    background: linear-gradient(135deg, #0D3D20 0%, #1B6B3A 100%);
+    border-radius: 0 0 12px 12px;
+    margin-left: auto;
+    margin-right: auto;
+    width: calc(100% - 48px);
+    max-width: 732px;
   }
   .hero-label {
     font-size: 10px;
@@ -903,7 +909,7 @@
 
 <script>
 // ── CONFIG ──────────────────────────────────────────────────────────────────
-const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby0O0AOk3ZiErnHR9D_FJHo3rCbj2Cnakog1gk502EVowGfxQ5ZgGRIXY5jVLCeSnh1/exec';
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzgrLvEiPmN4rd6QZirSvcCgKavbCMaDbQ4Vqf0Iyd2jn5viegY_OBQLtfpvRPmIlUw/exec';
 
 const SLOTS = [
   { id: 's1', time: '7:00 – 7:30' },
