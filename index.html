@@ -825,7 +825,7 @@
   <div class="hero-text">
     <div class="hero-label">✦ Chương trình sức khỏe doanh nghiệp 2026</div>
     <div class="hero-title">Đăng ký Khám Sức Khỏe<br><span>VMED Group 2026</span></div>
-    <div class="hero-desc">ONELAB trân trọng đồng hành cùng đại gia đình VMED Group — vì một đội ngũ khỏe mạnh & vững mạnh.</div>
+    <div class="hero-desc">ONELAB trân trọng đồng hành cùng đại gia đình VMED Group — vì một đội ngũ khỏe mạnh & bền vững.</div>
     <div class="hero-info-row">
       <div class="hero-info-chip">📍 Hồ Chí Minh</div>
       <div class="hero-info-chip">🧪 Lấy mẫu: <strong>07–08/07</strong></div>
@@ -906,12 +906,12 @@
       <div class="slot-section-title">Chọn ngày</div>
       <div class="day-tabs">
         <div class="day-tab active" id="tab-07" onclick="switchDay('07')">
-          <div class="day-tab-label">Thứ Hai</div>
+          <div class="day-tab-label">Thứ Ba</div>
           <div class="day-tab-date">07</div>
           <div class="day-tab-month">Tháng 07</div>
         </div>
         <div class="day-tab" id="tab-08" onclick="switchDay('08')">
-          <div class="day-tab-label">Thứ Ba</div>
+          <div class="day-tab-label">Thứ Tư</div>
           <div class="day-tab-date">08</div>
           <div class="day-tab-month">Tháng 07</div>
         </div>
@@ -1053,7 +1053,7 @@
           </div>
 
           <div class="uu-dai-item">
-            <div class="uu-dai-name">🔬 Gói HPV & sức khỏe phụ khoa</div>
+            <div class="uu-dai-name">🔬 HPV & sức khỏe phụ khoa</div>
             <div class="uu-dai-note">HPV 16 genotype, HPV 40 type, Pap smear...</div>
             <div class="uu-dai-price">
               <span class="uu-dai-old">1,313,000đ</span>
@@ -1116,14 +1116,13 @@ const SLOT_CAP = 33; // 195 / 2 ngày / 3 = ~32.5, dùng 33 (ngày 07: 33x3=99, 
 // Tổng: 6 slots x 33 x 2 ngày = 396 capacity > 195 → an toàn, server lock khi tổng đủ
 
 const MAIN_EXAM_DAYS = [
-  { date: '16/07', weekday: 'Thứ Tư', type: 'main' },
-  { date: '17/07', weekday: 'Thứ Năm', type: 'main' },
-  { date: '18/07', weekday: 'Thứ Sáu', type: 'main' },
-  { date: '19/07', weekday: 'Thứ Bảy', type: 'main' },
+  { date: '16/07', weekday: 'Thứ Năm', type: 'main' },
+  { date: '17/07', weekday: 'Thứ Sáu', type: 'main' },
+  { date: '18/07', weekday: 'Thứ Bảy', type: 'main' },
 ];
 const VET_EXAM_DAYS = [
-  { date: '21/07', weekday: 'Thứ Hai', type: 'vet' },
-  { date: '22/07', weekday: 'Thứ Ba', type: 'vet' },
+  { date: '20/07', weekday: 'Thứ Hai', type: 'vet' },
+  { date: '21/07', weekday: 'Thứ Ba', type: 'vet' },
 ];
 
 // ── STATE ───────────────────────────────────────────────────────────────────
@@ -1250,7 +1249,7 @@ function updateSlotSummary() {
   if (!state.selectedSlotId) { el.classList.remove('visible'); return; }
   const slot = SLOTS.find(s => s.id === state.selectedSlotId);
   document.getElementById('sum-sample-day').textContent =
-    `${state.selectedSlotDay === '07' ? 'Thứ Hai' : 'Thứ Ba'}, ${state.selectedSlotDay}/07/2026`;
+    `${state.selectedSlotDay === '07' ? 'Thứ Ba' : 'Thứ Tư'}, ${state.selectedSlotDay}/07/2026`;
   document.getElementById('sum-sample-slot').textContent = slot.time;
   el.classList.add('visible');
 }
