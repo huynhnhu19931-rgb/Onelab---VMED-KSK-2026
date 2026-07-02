@@ -1104,14 +1104,14 @@
 const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz1fbJ3onjr5wEJsk2JA1ScocQyI3-N1bbCG_L1NQLWn3Zkzv1XjlwAX0SgWo_ArDvC/exec';
 
 const SLOTS = [
-  { id: 's1', time: '7:00 – 7:30' },
-  { id: 's2', time: '7:30 – 8:00' },
-  { id: 's3', time: '8:00 – 8:30' },
-  { id: 's4', time: '8:30 – 9:00' },
-  { id: 's5', time: '9:00 – 9:30' },
-  { id: 's6', time: '9:30 – 10:00' },
+  { id: 's1', time: '7:00 – 7:30',  cap: 20 },
+  { id: 's2', time: '7:30 – 8:00',  cap: 20 },
+  { id: 's3', time: '8:00 – 8:30',  cap: 25 },
+  { id: 's4', time: '8:30 – 9:00',  cap: 20 },
+  { id: 's5', time: '9:00 – 9:30',  cap: 20 },
+  { id: 's6', time: '9:30 – 10:00', cap: 20 },
 ];
-const SLOT_CAP = 25; // 195 / 2 ngày / 3 = ~32.5, dùng 33 (ngày 07: 33x3=99, ngày 08: 32x3+33=99)
+const SLOT_CAP = 25; // fallback // 195 / 2 ngày / 3 = ~32.5, dùng 33 (ngày 07: 33x3=99, ngày 08: 32x3+33=99)
 // Điều chỉnh: ngày 07 = [33,33,33] = 99, ngày 08 = [32,32,33,33,33,33] → dùng đều 33/slot cho gọn
 // Tổng: 6 slots x 33 x 2 ngày = 396 capacity > 195 → an toàn, server lock khi tổng đủ
 
@@ -1216,7 +1216,7 @@ function renderSlots() {
   const counts = state.slotCounts[state.currentDay];
   grid.innerHTML = SLOTS.map(slot => {
     const filled = counts[slot.id] || 0;
-    const remaining = SLOT_CAP - filled;
+    const remaining = slot.cap - filled;
     const isFull = remaining <= 0;
     const isSelected = state.selectedSlotId === slot.id && state.selectedSlotDay === state.currentDay;
     const isWarn = remaining > 0 && remaining <= 10;
